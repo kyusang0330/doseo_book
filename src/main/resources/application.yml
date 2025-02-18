@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: book
+    name: doseo_book
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

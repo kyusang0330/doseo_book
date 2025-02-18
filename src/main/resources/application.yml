@@ -7,7 +7,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/chomini?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://10.107.166.217:3306/chomini?serverTimezone=Asia/Seoul #10.107.166.217
     username: mytest
     password: 1234
 
@@ -30,10 +30,10 @@ logging:
           descriptor:
             sql: trace
 
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      #      defaultZone: http://192.168.0.27:8761/eureka
-      defaultZone: http://127.0.0.1:8761/eureka
+#eureka:
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      #      defaultZone: http://192.168.0.27:8761/eureka
+#      defaultZone: http://127.0.0.1:8761/eureka

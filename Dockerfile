@@ -1,4 +1,4 @@
-FROM gradle:8.11.1-jdk17 as build
+FROM gradle:8.11.1-jdk17 AS build
 # 소스코드를 복사할 작업 디렉토리를 생성
 WORKDIR /myapp
 # 호스트머신에 소스코드를 이미지작업 디렉토리로 복사
@@ -22,13 +22,14 @@ RUN chmod +x gradlew
 #RUN #./gradlew dependencies --no-daemon
 #소스코드 복사
 #COPY src /myapp/src
-RUN ./gradlew clean build --no-daemon -x test
+RUN ./gradlew clean build --no-daemon -x test --stacktrace
 
 # 자바를 실행하기 위한 작업
 FROM openjdk:17-alpine
 WORKDIR /myapp
 #프로젝트빌드로 생성된 jar파일을 컴파일이미지로 복사
 COPY --from=build /myapp/build/libs/*.jar /myapp/doseo_book.jar
+#CMD ["sh", "-c", "ls -l /doseo_book.jar && java -jar /doseo_book.jar"]
 EXPOSE 7072
-ENTRYPOINT ["java","-jar","/doseo_book.jar"]
+CMD ["sh", "-c", "ls -l /myapp/doseo_book.jar && java -jar /myapp/doseo_book.jar"]
 
